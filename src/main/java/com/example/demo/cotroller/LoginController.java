@@ -16,7 +16,7 @@ public class LoginController {
     // Endpoint for user authentication and token generation
     @PostMapping("/authentication")
     public LoginResponse createjwtTokenAndLogin(@RequestBody LoginRequest loginRequest) throws Exception{
-        System.out.println(loginRequest);
+
          return jwtService.createJwtToken(loginRequest);
 
 

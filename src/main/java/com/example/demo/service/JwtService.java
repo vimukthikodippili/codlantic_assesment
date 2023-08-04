@@ -63,16 +63,16 @@ private JwtUtil util;
     // This method creates a JWT token based on the provided login request.
 
     public LoginResponse createJwtToken(LoginRequest loginRequest) throws Exception {
-        System.out.println(loginRequest);
+
         String username=loginRequest.getUserName();
         String userPassword=loginRequest.getPassord();
         authenticate(username,userPassword);
         UserDetails userDetails=loadUserByUsername(username);
         String newGeneratedToken =util.generaToken(userDetails);
-        System.out.println(newGeneratedToken);
+
         User user=userRepositry.findById(username).get();
         LoginResponse loginResponse=new LoginResponse(user,newGeneratedToken);
-        System.out.println("2"+loginResponse);
+
         return loginResponse;
     }
     // Helper method to perform user authentication using Spring Security's authenticationManager.

@@ -29,9 +29,11 @@ private JwtUtil util;
   private UserRepositry userRepositry;
   @Autowired
   private AuthenticationManager authenticationManager;
-  @Override
+    // This method is part of the UserDetailsService interface and is responsible for loading user details based on the provided username.
+
+    @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
-       // User user=userRepositry.findById(username).get();
+
       User user=userRepositry.findById(username).get();
         if (user !=null){
             return new org.springframework.security.core.userdetails.User(
@@ -47,6 +49,8 @@ private JwtUtil util;
         }
 
     }
+    // Helper method to extract authorities (roles) from the User object.
+
     private Set getAuthority(User user){
         Set<SimpleGrantedAuthority> authorities =new HashSet<>();
         for(Role role: user.getRole()){
@@ -56,6 +60,7 @@ private JwtUtil util;
         return authorities;
 
     }
+    // This method creates a JWT token based on the provided login request.
 
     public LoginResponse createJwtToken(LoginRequest loginRequest) throws Exception {
         System.out.println(loginRequest);
@@ -70,6 +75,7 @@ private JwtUtil util;
         System.out.println("2"+loginResponse);
         return loginResponse;
     }
+    // Helper method to perform user authentication using Spring Security's authenticationManager.
     private void authenticate(String username,String userPassword)    throws Exception{
         try {
 authenticationManager.authenticate(new UsernamePasswordAuthenticationToken(username,userPassword));

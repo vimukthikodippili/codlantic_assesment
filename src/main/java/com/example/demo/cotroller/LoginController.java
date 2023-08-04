@@ -13,8 +13,8 @@ import org.springframework.web.bind.annotation.RestController;
 public class LoginController {
     @Autowired
     private JwtService jwtService;
+    // Endpoint for user authentication and token generation
     @PostMapping("/authentication")
-
     public LoginResponse createjwtTokenAndLogin(@RequestBody LoginRequest loginRequest) throws Exception{
         System.out.println(loginRequest);
          return jwtService.createJwtToken(loginRequest);

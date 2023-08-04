@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 @RequestMapping("/role")
 public class RoleController {
+    // Endpoint for creating a new role
     @Autowired
     private RoleService roleService;
     @PostMapping("/create-new-role")

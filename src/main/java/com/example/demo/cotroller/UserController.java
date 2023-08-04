@@ -17,13 +17,15 @@ import javax.annotation.PostConstruct;
 public class UserController {
     @Autowired
     private UserService userService;
-
+    // Endpoint for registering a new user
     @PostMapping
     public User registerUser(@RequestBody User user){
         return userService.registerNewUser(user);
 
 
     }
+    // Method annotated with @PostConstruct will be executed once the Spring application context is fully initialized.
+    // It is used to initialize roles and users in the system.
 
     @PostConstruct
     public void initRoleAndUser(){
